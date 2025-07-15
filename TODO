@@ -1,0 +1,28 @@
+Ightems (Interface-Generating, HyperText Editing and Making Site)
+
+TODO:
+· Upon leaving ID field, check for emptiness and validity
+· Make class adding possible
+· Add class style
+· Enable using external CSS
+· Store in cookies
+· Export as HTML
+· Export as JSON
+· Draggable
+
+MAYBE TODO(?):
+
+TOCHECK:
+· Click order (div > div div > div div p)
+· Fix elements unable to be chosen when nothing is chosen ($isDescendant)
+
+COMPLETED
+V hr should not be contenteditable
+V img not appearing on firefox
+V ID and attribute fields should appear with the values of the currently chosen element instead of last-set values
+V Adding elements into DIV's innerHTML
+V Update generated ID according to the set-by-user ID
+V Prevent setting ID to anything that starts with "-"
+V Prevent setting already existing IDs
+V Make the Add menu, replacing the input field
+V Add inline style

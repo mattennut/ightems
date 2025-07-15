@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add,article,close,delete,drag_pan,edit,featured_video,format_h1,format_h2,format_h3,format_h4,format_h5,format_h6,format_paragraph,horizontal_rule,keyboard_arrow_down,keyboard_arrow_up,link,movie,photo,play_circle,segment,select,visibility,visibility_off" />
+		<script src="https://mattennut.com/utils.js"></script>
+		<script src="maker.js"></script>
+		<title>ightems</title>
+	</head>
+	<body>
+		<div id="--top-menu">
+			<div style="display: flex; justify-content: start; gap: .5em;">
+				<button>Edit</button>
+				<button>Preferences</button>
+			</div>
+			<h3 style="margin: 0;">ightems</h3>
+			<div style="display: flex; justify-content: end; gap: .5em;">
+				<span>Export as</span>
+				<button>HTML</button>
+				<button>JSON</button>
+			</div>			
+		</div>
+		<div id="--site-body">
+			<p id="--t0" contenteditable="true" onclick="$focusOnMe(this)">Editable text</p>
+		</div>
+		<div id="--sm-menu" oncontextmenu="$changeSides()">
+			<div id="--sm-menu-main">
+				<button onclick="$openElement('#--sm-menu-main', '#--sm-menu-new', 'flex')"><span class="material-symbols-outlined">add</span></button>
+				<!--<button><span class="material-symbols-outlined">edit</span></button>-->
+			</div>
+			<div id="--sm-menu-new">
+				<button class="--negative" onclick="$blurred()"><span class="material-symbols-outlined">close</span> Return</button>
+				<hr style="width: 100%; margin: 0;">
+				<div id="--sm-menu-new-els">
+					<p>Text</p>
+					<button onclick="$newElement('p')"><span class="material-symbols-outlined">format_paragraph</span> Paragraph</button>
+					<button onclick="$newElement('h1')"><span class="material-symbols-outlined">format_h1</span> Heading 1</button>
+					<button onclick="$newElement('h2')"><span class="material-symbols-outlined">format_h2</span> Heading 2</button>
+					<button onclick="$newElement('h3')"><span class="material-symbols-outlined">format_h3</span> Heading 3</button>
+					<button onclick="$newElement('h4')"><span class="material-symbols-outlined">format_h4</span> Heading 4</button>
+					<button onclick="$newElement('h5')"><span class="material-symbols-outlined">format_h5</span> Heading 5</button>
+					<button onclick="$newElement('h6')"><span class="material-symbols-outlined">format_h6</span> Heading 6</button>
+					<button onclick="$newElement('a')"><span class="material-symbols-outlined">link</span>Link (anchor)</button>
+					<button onclick="$newElement('hr')"><span class="material-symbols-outlined">horizontal_rule</span>Horizontal rule</button>
+					<p>Nestables</p>
+					<button onclick="$newElement('div')"><span class="material-symbols-outlined">select</span> Div</button>
+					<button onclick="$newElement('main')" disabled><span class="material-symbols-outlined">featured_video</span> Main</button>
+					<button onclick="$newElement('article')" disabled><span class="material-symbols-outlined">article</span> Article</button>
+					<button onclick="$newElement('section')" disabled><span class="material-symbols-outlined">segment</span> Section</button>
+					<p>Media</p>
+					<button onclick="$newElement('img')"><span class="material-symbols-outlined">photo</span> Image</button>
+					<button onclick="$newElement('video')" disabled><span class="material-symbols-outlined">movie</span> Video</button>
+					<button onclick="$newElement('audio')" disabled><span class="material-symbols-outlined">play_circle</span> Audio</button>
+				</div>
+				<hr style="width: 100%; margin: 0;">
+				<input type="text" onkeydown="onEnter(event, $newElement)" id="--sm-menu-new-input" placeholder="ol' reliable">
+				
+			</div>
+			<div id="--sm-menu-edit" data-state="0">
+				<div id="--sm-menu-edit-top" style="display: flex; justify-content: space-between; align-items: center;">
+					<div>
+						<h2 id="--sm-menu-edit-tag" style="margin: 0; display: inline;">Tag</h2>#<span id="--sm-menu-edit-id" contenteditable="true" onkeydown="onEnter(event, $focusedAttribute, this, 'id')">ID</span>
+					</div>
+					<div style="display: flex; gap: .5em;">
+						<button id="--sm-meu-edit-minimise" onclick="$minimise()"><span class="material-symbols-outlined">keyboard_arrow_down</span></button>
+						<button class="--negative" onclick="$blurred()"><span class="material-symbols-outlined">close</span></button>
+					</div>
+				</div>
+				<button id="--sm-menu-div-add" style="display: none;" class="--text-button-center" onclick="$openElement('#--sm-menu-edit', '#--sm-menu-new', 'flex')"><span class="material-symbols-outlined">add</span> Create child <span class="material-symbols-outlined" style="opacity: 0;">add</span></button>
+				<div style="display: flex; justify-content: space-between;">
+					<div style="display: flex; gap: .5em">
+						<button style="width: auto;" id="--sm-menu-edit-tab-attr" onclick="$openElement('#--sm-menu-edit-style', '#--sm-menu-edit-attr', 'grid'); $activateTab('#--sm-menu-edit-tab-attr', '#--sm-menu-edit-tab-style')">Attributes</button>
+						<button style="width: auto;" id="--sm-menu-edit-tab-style" onclick="$openElement('#--sm-menu-edit-attr', '#--sm-menu-edit-style', 'grid'); $activateTab('#--sm-menu-edit-tab-style', '#--sm-menu-edit-tab-attr')" class="--on">Style</button>
+					</div>
+					<button class="--dangerous-negative"><span class="material-symbols-outlined">delete</span></button>
+				</div>
+				<div id="--sm-menu-edit-attr" class="--set-grid">
+					<label id="--sm-menu-edit-label-href">href</label>
+					<input type="text" id="--sm-menu-edit-input-href" onkeydown="onEnter(event, $focusedAttribute, this, 'href')">
+					<label id="--sm-menu-edit-label-src">src</label>
+					<input type="text" id="--sm-menu-edit-input-src" onkeydown="onEnter(event, $focusedAttribute, this, 'src')">
+				</div>
+				<div id="--sm-menu-edit-style" class="--set-grid-style" style="display: none;">
+					<p class="--sm-menu-edit-section-title">Colour</p>
+
+					<label id="--sm-menu-edit-label-color">Text colour</label>
+					<input type="color" id="--sm-menu-edit-input-color" autocomplete="off">
+					<button class="--sm-menu-edit-input-activate"><span class="material-symbols-outlined">visibility</span></button>
+
+					<label id="--sm-menu-edit-label-background-color">Background colour</label>
+					<input type="color" value="#dddddd" id="--sm-menu-edit-input-background-color" autocomplete="off" disabled>
+					<button  class="--sm-menu-edit-input-activate --on"><span class="material-symbols-outlined">visibility_off</span></button>
+
+					<label id="--sm-menu-edit-label-opacity">Opacity</label>
+					<input type="text" min="0" max="100" id="--sm-menu-edit-input-opacity" autocomplete="off" placeholder="100%">
+
+					<p class="--sm-menu-edit-section-title">Text</p>
+
+					<label id="--sm-menu-edit-label-font-size">Font size</label>
+					<input type="text" id="--sm-menu-edit-input-font-size" autocomplete="off" placeholder="16px">
+					
+					<label id="--sm-menu-edit-label-font-weight">Font weight</label>
+					<input type="number" id="--sm-menu-edit-input-font-weight" autocomplete="off" placeholder="400">
+
+					<label id="--sm-menu-edit-label-text-decoration">Decoration</label>
+					<select id="--sm-menu-edit-input-text-decoration">
+						<option value="none">None</option>
+						<option value="underline"><span style="text-decoration: underline;">Underline</span></option>
+						<option value="line-through"><span style="text-decoration: line-through;">Line through</span></option>
+						<option value="overline"><span style="text-decoration: overline;">Overline</span></option>
+					</select>
+
+					<label id="--sm-menu-edit-label-text-align">Align</label>
+					<select id="--sm-menu-edit-input-text-align">
+						<option value="left">← Left</option>
+						<option value="center">⇆ Center</option>
+						<option value="right">→ Right</option>
+						<option value="justify">↔ Justify</option>
+					</select>
+
+					<label id="--sm-menu-edit-label-line-height">Line height</label>
+					<input type="number" id="--sm-menu-edit-input-line-height" autocomplete="off" placeholder="1.25">
+
+					<label id="--sm-menu-edit-label-letter-spacing">Letter spacing</label>
+					<input type="text" id="--sm-menu-edit-input-letter-spacing" autocomplete="off" placeholder="0">
+
+					<label id="--sm-menu-edit-label-word-spacing">Word spacing</label>
+					<input type="text" id="--sm-menu-edit-input-word-spacing" autocomplete="off" placeholder="0">
+
+					<p class="--sm-menu-edit-section-title">Size</p>
+
+					<label id="--sm-menu-edit-label-width">Width</label>
+					<input type="text" id="--sm-menu-edit-input-width" autocomplete="off">
+					
+					<label id="--sm-menu-edit-label-height">Height</label>
+					<input type="text" id="--sm-menu-edit-input-height" autocomplete="off">
+
+					<label id="--sm-menu-edit-label-margin">Margin</label>
+					<input type="text" id="--sm-menu-edit-input-margin" autocomplete="off">
+					
+					<label id="--sm-menu-edit-label-padding">Padding</label>
+					<input type="text" id="--sm-menu-edit-input-padding" autocomplete="off">
+					
+					<p class="--sm-menu-edit-section-title">Layout</p>
+
+					<label id="--sm-menu-edit-label-float">Float</label>
+					<select id="--sm-menu-edit-input-float">
+						<option value="">Default</option>
+						<option value="left">← Left</option>
+						<option value="right">→ Right</option>
+						<option value="none">None</option>
+						<option value="inherit">↓ Inherit</option>
+					</select>
+
+					<label id="--sm-menu-edit-label-display">Display</label>
+					<select id="--sm-menu-edit-input-display">
+						<option value="">Default</option>
+						<option value="inline">Inline</option>
+						<option value="inline-block">Inline-block</option>
+						<option value="block">Block</option>
+						<option value="flex">Flex</option>
+						<option value="grid">Grid</option>
+						<option value="none" disabled>None</option>
+						<option value="initial">Initial</option>
+					</select>
+
+					<label id="--sm-menu-edit-label-flex-direction">Flex direction</label>
+					<select id="--sm-menu-edit-input-flex-direction">
+						<option value="">Default</option>
+						<option value="row">Row</option>
+						<option value="row-reverse">Row reverse</option>
+						<option value="column">Column</option>
+						<option value="column-reverse">Column reverse</option>
+					</select>
+
+					<label id="--sm-menu-edit-label-flex-direction">Flex wrap</label>
+					<select id="--sm-menu-edit-input-flex-direction">
+						<option value="">Default</option>
+						<option value="nowrap">No wrap</option>
+						<option value="wrap">Wrap</option>
+						<option value="wrap-reverse">Wrap reverse</option>
+					</select>
+
+					<label id="--sm-menu-edit-label-align-content">Align content</label>
+					<select id="--sm-menu-edit-input-align-content">
+						<option value="flex-start">Flex start</option>
+						<option value="flex-end">Flex end</option>
+						<option value="center">Centre</option>
+						<option value="space-between">Space between</option>
+						<option value="space-around">Space around</option>
+						<option value="stretch">Stretch</option>
+					</select>
+
+					<label id="--sm-menu-edit-label-justify-content">Justify content</label>
+					<select id="--sm-menu-edit-input-justify-content">
+						<option value="flex-start">Flex start</option>
+						<option value="flex-end">Flex end</option>
+						<option value="center">Centre</option>
+						<option value="space-between">Space between</option>
+						<option value="space-around">Space around</option>
+						<option value="space-evenly">Space evenly</option>
+					</select>
+
+					<label id="--sm-menu-edit-label-align-items">Align items</label>
+					<select id="--sm-menu-edit-input-align-items">
+						<option value="stretch">Stretch</option>
+						<option value="flex-start">Flex start</option>
+						<option value="flex-end">Flex end</option>
+						<option value="center">Centre</option>
+						<option value="baseline">Baseline</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div style="display: none; position: absolute; width: 2em; height: 2em; background-color: #87ede6; cursor:all-scroll; align-items: center; justify-content: center;" id="--controls-drag">
+			<span class="material-symbols-outlined" style="user-select: none;">drag_pan</span>
+		</div>
+	</body>
+</html>

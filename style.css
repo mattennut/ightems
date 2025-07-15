@@ -1,0 +1,259 @@
+html{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	overflow: hidden;
+	margin: 0;
+	padding: .5em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	max-height: 100vh;
+	box-sizing: border-box;
+}
+
+*{
+	font-family: Inter;
+}
+
+input[type="color"]:disabled{
+	opacity: 50%;
+}
+
+hr{
+	border: 0.125em solid #00000088;
+}
+
+#--sm-menu button.--negative{
+	background-color: #d90b4c;
+	color: #ffffff;
+}
+/* d90b4c */
+
+#--sm-menu button.--negative:hover{
+	background-color: #c00741;
+}
+
+#--sm-menu button.--dangerous-negative{
+	background-color: #86042d;
+	color: #ffffff;
+}
+
+#--sm-menu button.--dangerous-negative:hover{
+	background-color: #5b021e;
+}
+
+#--site-body div:empty{
+	background-color: #00000008;
+	min-height: 3em;
+	min-width: 3em;
+}
+
+#--site-body div{
+	outline: 0.125em solid #00000008;
+	padding-block: 0.5em;
+}
+
+#--site-body .--over-selected-el{
+	outline: 0.125em dashed #e91348aa;
+}
+
+#--site-body div:not(:empty):hover{
+	background-color: 	08;
+	padding-block: 0.5em;
+}
+
+#--top-menu{
+	height: 2em;
+	display: grid;
+	align-items: center;
+	grid-template-columns: 1fr auto 1fr;
+}
+
+#--site-body{
+	border: 0.125em solid #000000;
+	padding-inline: 0.25em;
+	height: calc(100vh - 3.5em);
+	overflow-y: scroll;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+#--site-body::-webkit-scrollbar{
+	display: none;
+}
+
+.--over-selected-el{
+	/*filter: drop-shadow(0 .25em .5em #e91348aa) saturate(150%);*/
+	/*backdrop-filter: blur(39em);*/
+}
+
+#--sm-menu{
+	position: fixed;
+	right: 1.25em;
+	bottom: 1.5em;
+	padding: 1em;
+	border: 0.125em solid #000000;
+	background: #ffffffbb;
+	filter: drop-shadow(0 0 .5em #e9134822);
+	backdrop-filter: blur(0.5em) sepia(40%);
+	user-select: none;
+	overflow: hidden;
+}
+
+#--sm-menu button{
+	background-color: #FFF5FB;
+	border: 0.125em solid #000000;
+	width: 3em;
+	height: 3em;
+	padding: 0.5em;
+	transition: background-color 0.15s;
+}
+
+#--sm-menu button.--text-button{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: .5em;
+}
+
+#--sm-menu button.--text-button-center{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#--sm-menu button:hover{
+	background-color: #FDEBF6;
+	border: 0.125em solid #000000;
+	padding: 0.5em;
+}
+
+#--sm-menu input, #--sm-menu select{
+	background-color: #FFF5FB;
+	border: 0.125em solid #000000;
+	min-height: 3em;
+	box-sizing: border-box;
+}
+
+#--sm-menu-new {
+	max-height: calc(100vh - 7.5em);
+	display: none;
+	flex-direction: column;
+	gap: .5em;
+}
+
+#--sm-menu-new button {
+	width: 190px;
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+}
+
+#--sm-menu-new p{
+	font-weight: 600;
+	font-size: large;
+	min-height: 40px;
+	display: flex;
+	align-items: center;
+	margin: 0;
+}
+
+#--sm-menu-new-els {
+	overflow-y: scroll; 
+	display: flex; 
+	flex-direction: column; 
+	gap: .5em;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+#--sm-menu-new-els::-webkit-scrollbar{
+	display: none;
+}
+
+#--sm-menu-edit{
+	display: none;
+	width: 16em;
+	height: calc(100vh - 7em);
+	flex-direction: column;
+	overflow: unset;
+	gap: .5em;
+	transition: height 0.3s cubic-bezier(.40,1.15,.40,1.05);
+}
+
+#--sm-menu-edit.--minimised{
+	height: 25em; 
+	overflow: hidden
+}
+
+#--sm-menu-edit.--collapsed{
+	height: 2.5em;
+	overflow: hidden;
+	transition: height 0.3s cubic-bezier(.40,1.15,.40,1.0);
+}
+
+@keyframes hideOverflow {
+	0% {
+		overflow: unset;
+	}
+	100% {
+		overflow: hidden;
+	}
+}
+
+#--sm-menu-edit input, #--sm-menu-edit select{
+	width: 100%;
+}
+
+#--sm-menu-edit-style{
+	overflow-y: scroll; 
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+#--sm-menu-edit-style input[type="text"], 
+#--sm-menu-edit-style input[type="number"],
+#--sm-menu-edit-style select{
+	grid-column: 2/4;
+}
+
+.--set-grid{
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	align-items: center;
+}
+
+#--sm-menu-edit button.--on{
+	background-color: #b6a7b0;
+	color: #ffffff;
+}
+
+#--sm-menu-edit button.--on:hover{
+	background-color: #90828b;
+}
+
+.--set-grid .--sm-menu-edit-section-title, 
+.--set-grid-style .--sm-menu-edit-section-title{
+	grid-column-start: 1;
+	grid-column-end: 4;
+	font-weight: 600;
+	font-size: 1.5em;
+	align-items: end;
+	min-height: 40px;
+	display: flex;
+	margin: 0;
+}
+
+
+
+.--set-grid-style{
+	display: grid;
+	grid-template-columns: 3fr 2fr 1fr;
+	row-gap: .25em;
+	align-items: center;
+}
+
